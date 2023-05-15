@@ -29,7 +29,7 @@ exports('Showidentification',function (data,slot)
         if data then
             local item = exports.ox_inventory:Items("identification")
 			if item then
-				TriggerEvent('qidentification:showID',item)
+				TriggerEvent('qidentification:showID',data)
 			end
         end
     end)
@@ -40,7 +40,7 @@ exports('Showdrivers_license',function (data,slot)
         if data then
             local item = exports.ox_inventory:Items("drivers_license")
 			if item then
-				TriggerEvent('qidentification:showID',item)
+				TriggerEvent('qidentification:showID',data)
 			end
         end
     end)
@@ -51,7 +51,7 @@ exports('Showfirearms_license',function (data,slot)
         if data then
             local item = exports.ox_inventory:Items("firearms_license")
 			if item then
-				TriggerEvent('qidentification:showID',item)
+				TriggerEvent('qidentification:showID',data)
 			end
         end
     end)
@@ -103,13 +103,18 @@ AddEventHandler('qidentification:showUI', function(data)
 		action = "open",
 		metadata = data.metadata
 	})
-	RegisterCommand('cancel', function()
+	Citizen.Wait(Config.ShowIdDuration * 1000)		    -- this is the part where I added for the ID card to stop showing
+	SendNUIMessage({									-- this is the part where I added for the ID card to stop showing
+		action = "close"								-- this is the part where I added for the ID card to stop showing
+	})													-- this is the part where I added for the ID card to stop showing
+	LocalPlayer.state:set('idvisible',false,false)		-- this is the part where I added for the ID card to stop showing
+	RegisterCommand('idstop', function()
 		SendNUIMessage({
 			action = "close"
 		})
 		LocalPlayer.state:set('idvisible',false,false)
 		-- Once the NUI is closed, we redefine the command to do nothing again, so it can be used by other resources
-		RegisterCommand('cancel', function()
+		RegisterCommand('idstop', function()
 			-- empty the command
 		end)
 	end)
