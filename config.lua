@@ -8,7 +8,7 @@ Config.ShowIdDuration = 5 -- how much time in seconds you want to stop showing t
 Config.ShowIDCooldown = Config.ShowIdDuration
 -- The item you use for your physical currency
 Config.MoneyItem = 'money' -- or 'cash' or whatever you use
-Config.CustomMugshots = false -- for custom url, you can put your link for img
+Config.CustomMugshots = true -- for custom url, you can put your link for img
 
 Config.MugshotScriptName = "MugShotBase64" -- mugshot or MugShotBase64
 
